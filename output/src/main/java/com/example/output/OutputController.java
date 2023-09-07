@@ -23,8 +23,10 @@ public class OutputController {
     @GetMapping("/calculated/{size}")
     public ResponseEntity<?> write(@PathVariable @NonNull Integer size) {
 
+        var time1 = System.currentTimeMillis();
         List<List<Integer>> matrix = outputClient.getMultiplicated(size);
         matrixConsoleWriter.write(matrix);
+        System.out.println("Executed. Millis spent: " + (System.currentTimeMillis() - time1));
 
         return ResponseEntity.ok(matrix);
     }
